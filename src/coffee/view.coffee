@@ -6,11 +6,9 @@ app = angular.module 'myapp', []
 class @AegisCtrl
   @$inject: ['$scope']
   constructor: (@scope) ->
-    @scope.trials = [{}]
+    @clear()
     @scope.change = @change
-    @changeResult(@allAnswers())
-    # angular.extend @scope,
-    #   change: @change
+    @scope.clear = @clear
 
   change: =>
     valids = []
@@ -34,6 +32,11 @@ class @AegisCtrl
     initExcs = Answer.toNums(@scope.initExc)
     inits = _.filter [0..9], (i) -> !_.contains(initExcs, i)
     Answer.allAnswer(inits)
+
+  clear: =>
+    @scope.trials = [{}]
+    @scope.initExc = ""
+    @changeResult(@allAnswers())
 
   @isValid: (trial) ->
     hit = trial.hit

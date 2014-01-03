@@ -11,31 +11,38 @@
     <script src="build/js/aegis.js"></script>
   </head>
   <body ng-app>
-    <h1>AegisCode支援ツール</h1>
-    <p>ソーシャルゲーム閃光神姫イージスコードの数字を当てる支援をするツールです。現在候補を絞る機能を実装しています</p>
-    <div ng-controller="AegisCtrl">
-      <h3>入力</h3>
-      <fieldset>
-        <label>除外<input type="text" maxlength="10" size="5" ng-model="initExc" ng-change="change()" /></label>
-        <div ng-repeat="trial in trials">
-          <form class="form-inline">
-            <div class="form-group">
-              <label>Input</label>
-              <input type="text" maxlength="10" size="10" ng-model="trial.input" ng-change="change()" />
+    <div class="container">
+      <div class="starter-template">
+        <h1>AegisCode支援ツール</h1>
+        <p>ソーシャルゲーム閃光神姫イージスコードの数字を当てる支援をするツールです。現在候補を絞る機能を実装しています</p>
+        <p><a href="http://senkosinki.gamerch.com/%E6%95%B0%E5%AD%97%E5%BD%93%E3%81%A6%E3%81%AE%E3%82%B3%E3%83%84">Wiki</a>などを見ると更に当てられる確率が上がるでしょう</p>
+        <p>ソースコードは<a href="https://github.com/ponkotuy/aegiscode">こちら</a></p>
+        <div ng-controller="AegisCtrl">
+          <h3>入力</h3>
+          <fieldset>
+            <label>除外<input type="text" maxlength="10" size="5" ng-model="initExc" ng-change="change()" /></label>
+            <div ng-repeat="trial in trials">
+              <form class="form-inline">
+                <div class="form-group">
+                  <label>Input</label>
+                  <input type="text" maxlength="10" size="10" ng-model="trial.input" ng-change="change()" />
+                </div>
+                <div class="form-group">
+                  <label>Hit</label>
+                  <input type="number" maxlength="1" size="3" ng-model="trial.hit" ng-change="change()" />
+                </div>
+                <div class="form-group">
+                  <label>Blow</label>
+                  <input type="number" maxlength="1" size="3" ng-model="trial.blow" ng-change="change()" />
+                </div>
+              </form>
             </div>
-            <div class="form-group">
-              <label>Hit</label>
-              <input type="number" maxlength="1" size="3" ng-model="trial.hit" ng-change="change()" />
-            </div>
-            <div class="form-group">
-              <label>Blow</label>
-              <input type="number" maxlength="1" size="3" ng-model="trial.blow" ng-change="change()" />
-            </div>
-          </form>
+            <button type="button" class="btn btn-xs btn-warning" ng-click="clear()">Clear</button>
+          </fieldset>
+          <h3>候補<small>{{ count }}</small></h3>
+          <p>{{ view }}</p>
         </div>
-      </fieldset>
-      <h3>候補<small>{{ count }}</small></h3>
-      <p>{{ view }}</p>
+      </div>
     </div>
   </body>
 </html>
